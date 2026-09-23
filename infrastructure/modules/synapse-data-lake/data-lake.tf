@@ -1,9 +1,7 @@
 
 resource "azurerm_storage_account" "synapse" {
-  #checkov:skip=CKV2_AZURE_40: Ensure storage account is not configured with Shared Key authorization (checkov v3)
-  #checkov:skip=CKV2_AZURE_47: Ensure storage account is configured without blob anonymous access (checkov v3)
-  #checkov:skip=CKV2_AZURE_41: Ensure storage account is configured with SAS expiration policy (checkov v3)
   #checkov:skip=CKV_AZURE_244: Avoid the use of local users for Azure Storage unless necessary (checkov v3)
+  #checkov:skip=CKV_AZURE_33: Ensure Storage logging is enabled for Queue service for read, write and delete requests (checkov v3)
   #checkov:skip=CKV_AZURE_35: Firewall is enabled using azurerm_storage_account_network_rules
   #checkov:skip=CKV_AZURE_59: Firewall is enabled using azurerm_storage_account_network_rules
   #checkov:skip=CKV_AZURE_190: Firewall is enabled using azurerm_storage_account_network_rules
@@ -12,6 +10,9 @@ resource "azurerm_storage_account" "synapse" {
   #checkov:skip=CKV2_AZURE_8: Firewall is enabled using azurerm_storage_account_network_rules
   #checkov:skip=CKV2_AZURE_18: Microsoft managed keys are acceptable
   #checkov:skip=CKV2_AZURE_33: Private Endpoint is not enabled as networking is controlled by Firewall
+  #checkov:skip=CKV2_AZURE_40: Ensure storage account is not configured with Shared Key authorization (checkov v3)
+  #checkov:skip=CKV2_AZURE_47: Ensure storage account is configured without blob anonymous access (checkov v3)
+  #checkov:skip=CKV2_AZURE_41: Ensure storage account is configured with SAS expiration policy (checkov v3)
   name                             = replace("pins-st-${local.resource_suffix}-${random_string.unique_id.id}", "-", "")
   resource_group_name              = var.resource_group_name
   location                         = var.location
